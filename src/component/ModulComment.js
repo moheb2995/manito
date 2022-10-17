@@ -3,7 +3,7 @@ import { FcLike } from 'react-icons/fc';
 import { BsHeart } from 'react-icons/bs';
 import { API_KEY } from '../App';
 
-const ModulComment = ({ setcommentModul, showComment, loadingComment, name, lastname, commentList }) => {
+const ModulComment = ({ setcommentModul, setReplyComment_id, loadingComment, name, lastname, commentList }) => {
   
   const commentReplyList = async(comment_id) =>{
     fetch('https://api.moneytoo.ir/api/users/users_get_comment_reply_list',{

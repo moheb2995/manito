@@ -18,6 +18,8 @@ const Posts = ({ data, setdata, setupdate, update }) => {
   const [commentModul, setcommentModul] = useState(false)
   const [commentList, setcommentList] = useState([])
   const [loadingComment, setloadingComment]= useState(true)
+  const [ReplyComment_id, setReplyComment_id]= useState('')
+  
   const id = useId()
 
   // console.log(commentList);
@@ -62,6 +64,11 @@ const Posts = ({ data, setdata, setupdate, update }) => {
       headers: { 'Content-Type' : 'application/json'},
       body: JSON.stringify({ API_KEY, post_id, bookmark_id })
     }).then(res => res.json()).then(data => setlikeres(data))
+    fetch('https://api.moneytoo.ir/api/users/users_delete_post_from_bookmarked',{
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json'},
+      body: JSON.stringify({ API_KEY, post_id })
+    }).then(res => res.json()).then(data => setlikeres(data))
     setupdate(!update)
   }
 
@@ -82,7 +89,7 @@ const Posts = ({ data, setdata, setupdate, update }) => {
     setdata(data);setupdateInput(!updateInput)
   }
 
-  const sendComment = async(post_id, comment_input) =>{
+  const sendComment = async(post_id, comment_input, ) =>{
     console.log(1,comment_input);
     fetch('https://api.moneytoo.ir/api/users/users_send_comment',{
       method: 'POST',
@@ -154,7 +161,7 @@ const Posts = ({ data, setdata, setupdate, update }) => {
 
       {etcModul ? <ModulEtc setEtcModul={setEtcModul} post_id={i.post_id} /> : ''}
       {sendModul ? <ModulSend setsendModul={setsendModul} /> : ''}
-      {commentModul ? <ModulComment setcommentModul={setcommentModul} showComment={showComment} name={i.name} loadingComment={loadingComment} lastname={i.lastname} commentList={commentList} /> : ''}
+      {commentModul ? <ModulComment setcommentModul={setcommentModul} setReplyComment_id={setReplyComment_id} showComment={showComment} name={i.name} loadingComment={loadingComment} lastname={i.lastname} commentList={commentList} /> : ''}
 
 
     </div>

@@ -3,7 +3,7 @@ import FollowList from './component/FollowList'
 import Navbar from './component/Navbar'
 import Posts from './component/Posts'
 
-export const API_KEY = '15386-SSZPyjcEGDMTDgvSUiEfrWYCKjracjSlQHHmNXQRySPZfrzudH'
+export const API_KEY = '15386-15386-SSZPyjcEGDMTDgvSUiEfrWYCKjracjSlQHHmNXQRySPZfrzudH'
 
 const App = () => {
   const [postExist, setpostExist] = useState(1)
@@ -26,7 +26,8 @@ const App = () => {
     })
     .then(res => res.json())
     .then(data => { 
-      setdata(data.Informations.map(i => Object.assign(i,obj)))
+      setdata(data)
+      // setdata(data.Informations.forEach(i => Object.assign(i,obj)))
       if(data.Informations.length !== 0){
         setpostExist(2)
       }
@@ -37,7 +38,7 @@ const App = () => {
 
   },[update])
 
-// console.log(data);
+console.log(data);
   return (
     <div className='m-4'>
       <Navbar />
